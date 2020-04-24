@@ -43,12 +43,50 @@ function get_items($db, $is_open = false){
   return fetch_all_query($db, $sql);
 }
 
+function get_limit_items($db, $is_open = false, $start_array_num, $needs){
+  $sql = '
+    SELECT
+      item_id, 
+      name,
+      stock,
+      price,
+      image,
+      status
+    FROM
+      items
+  ';
+  if($is_open === true){
+    $sql .= '
+      WHERE status = 1
+    ';
+  }
+  $sql .= '
+    LIMIT ?, ?
+  ';
+  $params = array($start_array_num, $needs);
+
+  return fetch_all_query($db, $sql, $params);
+}
+
+function get_open_items_num($db) {
+  $sql = '
+  SELECT COUNT(*)
+  FROM items
+  WHERE status = 1
+  ';
+  return fetchColumn_query($db, $sql);
+  }
+
 function get_all_items($db){
   return get_items($db);
 }
 
 function get_open_items($db){
   return get_items($db, true);
+}
+
+function get_open_limit_items($db, $start_array_num, $needs){
+  return get_limit_items($db, true, $start_array_num, $needs);
 }
 
 function regist_item($db, $name, $price, $stock, $status, $image){

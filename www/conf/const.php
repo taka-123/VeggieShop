@@ -26,6 +26,8 @@ define('ADMIN_URL', '/admin.php');
 define('REGEXP_ALPHANUMERIC', '/\A[0-9a-zA-Z]+\z/');
 define('REGEXP_POSITIVE_INTEGER', '/\A([1-9][0-9]*|0)\z/');
 
+// 商品一覧1ページの最大表示件数
+define('INDEX_NUM_MAX', 8);
 
 define('USER_NAME_LENGTH_MIN', 6);
 define('USER_NAME_LENGTH_MAX', 100);

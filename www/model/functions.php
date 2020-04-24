@@ -157,3 +157,21 @@ function is_valid_csrf_token($token){
   // get_session()はユーザー定義関数
   return $token === get_session('csrf_token');
 }
+
+function get_now_page(){
+  if(!isset($_GET['page_id'])){
+    return 1;
+  }else{
+    return $_GET['page_id'];
+  }
+}
+
+function print_page_link($now_page, $max_page) {
+  for($i = 1; $i <= $max_page; $i++){
+      if ($i === $now_page) { // 現在表示中のページ番号にはリンクを貼らない
+          print('<span class="text-danger">' . $i . '</span> ' . ' ');
+      } else {
+          print('<a href=\'/index.php?page_id='. $i. '\')>'. $i. '</a> '. ' ');
+      }
+  }
+}
