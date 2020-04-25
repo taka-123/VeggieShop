@@ -167,11 +167,26 @@ function get_now_page(){
 }
 
 function print_page_link($now_page, $max_page) {
+  if($now_page > 1){
+    print '<a href=\'/index.php?page_id='.($now_page - 1).'\')>前へ</a> '. ' ';
+  } else {
+    // 現在のページが1ページ目ならリンクを貼らない
+    print '<span>前へ</span> '. ' ';
+  }
+  
   for($i = 1; $i <= $max_page; $i++){
-      if ($i === $now_page) { // 現在表示中のページ番号にはリンクを貼らない
-          print('<span class="text-danger">' . $i . '</span> ' . ' ');
-      } else {
-          print('<a href=\'/index.php?page_id='. $i. '\')>'. $i. '</a> '. ' ');
-      }
+    if ($i === $now_page) {
+      // 現在表示中のページ番号にはリンクを貼らない
+      print('<span class="text-danger">' . $i . '</span> ' . ' ');
+    } else {
+      print('<a href=\'/index.php?page_id='. $i. '\')>'. $i. '</a> '. ' ');
+    }
+  }
+
+  if($now_page < $max_page){
+    print '<a href=\'/index.php?page_id='.($now_page + 1).'\')>次へ</a> '. ' ';
+  } else {
+    // 現在のページが最終ページ目ならリンクを貼らない
+    print '<span>次へ</span> '. ' ';
   }
 }
