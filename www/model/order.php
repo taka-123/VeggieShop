@@ -79,10 +79,10 @@ function get_user_orders($db, $user_id){
       order_details
     ON
       orders.order_id = order_details.order_id
+    WHERE
+        orders.user_id = ?
     GROUP BY
       orders.order_id
-    HAVING
-      orders.user_id = ?
     ORDER BY
       orders.created DESC
   ";
