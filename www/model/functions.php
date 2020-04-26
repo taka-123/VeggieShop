@@ -167,26 +167,38 @@ function get_now_page(){
 }
 
 function print_page_link($now_page, $max_page) {
+  // ページネーション
+  print('<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">');
+  // 「前へ」ボタン
   if($now_page > 1){
-    print '<a href=\'/index.php?page_id='.($now_page - 1).'\')>前へ</a> '. ' ';
+    print('<li class="page-item"><a class="page-link" href="/index.php?page_id='.($now_page - 1).'">前へ</a></li>');
   } else {
     // 現在のページが1ページ目ならリンクを貼らない
-    print '<span>前へ</span> '. ' ';
+    print('<li class="page-item disabled"><a class="page-link">前へ</a></li>');
   }
-  
+  // 「ページ番号」の繰り返し表示
   for($i = 1; $i <= $max_page; $i++){
     if ($i === $now_page) {
       // 現在表示中のページ番号にはリンクを貼らない
-      print('<span class="text-danger">' . $i . '</span> ' . ' ');
+      print('<li class="page-item active"><span class="page-link">'.$i.'<span class="sr-only">(current)</span></span></li>');
     } else {
-      print('<a href=\'/index.php?page_id='. $i. '\')>'. $i. '</a> '. ' ');
+      print('<li class="page-item"><a class="page-link" href="/index.php?page_id='.$i.'">'.$i.'</a></li>');
     }
   }
-
+  // 「次へ」ボタン
   if($now_page < $max_page){
-    print '<a href=\'/index.php?page_id='.($now_page + 1).'\')>次へ</a> '. ' ';
+    print('<li class="page-item"><a class="page-link" href="/index.php?page_id='.($now_page + 1).'">次へ</a></li>');
   } else {
     // 現在のページが最終ページ目ならリンクを貼らない
-    print '<span>次へ</span> '. ' ';
+    print('<li class="page-item disabled"><a class="page-link">次へ</a></li>');
   }
+  print('</ul>
+  </nav>');
+}
+
+function print_list_num($item_num, $now_start_num, $now_finish_num){
+  print('<p class="text-center">
+  「'.$item_num.'件中 '.$now_start_num.'-'.$now_finish_num.'件目の商品」
+  </p>');
 }

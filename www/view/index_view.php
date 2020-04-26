@@ -15,12 +15,9 @@
     <h1>商品一覧</h1>
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
 
-    <div class="text-center">
-      <?php print_page_link($now_page, $max_page); ?>
-    </div>
-    <p class="text-center">
-      「<?php print($item_num); ?>件中 <?php print($now_start_num); ?> - <?php print($now_finish_num); ?>件目の商品」
-    </p>
+    <?php print_page_link($now_page, $max_page); ?>
+
+    <?php print_list_num($item_num, $now_start_num, $now_finish_num); ?>
 
     <div class="card-deck">
       <div class="row">
@@ -51,10 +48,9 @@
       </div>
     </div>
 
-    <div class="text-center">
-      <?php print_page_link($now_page, $max_page); ?>
-    </div>
-  </div>
+    <?php print_list_num($item_num, $now_start_num, $now_finish_num); ?>
+
+    <?php print_page_link($now_page, $max_page); ?>
   
 </body>
 </html>
