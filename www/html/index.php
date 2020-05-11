@@ -32,6 +32,8 @@ if (($now_start_num + INDEX_NUM_MAX - 1) < $item_num) {
   $now_finish_num = $item_num;
 }
 
-$items = get_open_limit_items($db, $start_array_num, INDEX_NUM_MAX);
+// sort初期化（デフォルト：新着順）
+$sort = 'ORDER BY created DESC';
+$items = get_open_limit_items($db, $sort, $start_array_num, INDEX_NUM_MAX);
 
 include_once VIEW_PATH . 'index_view.php';

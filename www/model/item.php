@@ -43,7 +43,7 @@ function get_items($db, $is_open = false){
   return fetch_all_query($db, $sql);
 }
 
-function get_limit_items($db, $is_open = false, $start_array_num, $needs){
+function get_limit_items($db, $is_open = false, $sort, $start_array_num, $needs){
   $sql = '
     SELECT
       item_id, 
@@ -60,6 +60,7 @@ function get_limit_items($db, $is_open = false, $start_array_num, $needs){
       WHERE status = 1
     ';
   }
+  $sql .= $sort;
   $sql .= '
     LIMIT ?, ?
   ';
@@ -85,8 +86,8 @@ function get_open_items($db){
   return get_items($db, true);
 }
 
-function get_open_limit_items($db, $start_array_num, $needs){
-  return get_limit_items($db, true, $start_array_num, $needs);
+function get_open_limit_items($db, $sort, $start_array_num, $needs){
+  return get_limit_items($db, true, $sort, $start_array_num, $needs);
 }
 
 function regist_item($db, $name, $price, $stock, $status, $image){
