@@ -3,6 +3,7 @@ require_once '../conf/const.php';
 require_once '../model/functions.php';
 require_once '../model/user.php';
 require_once '../model/item.php';
+require_once '../model/sort.php';
 
 session_start();
 
@@ -32,6 +33,16 @@ if (($now_start_num + INDEX_NUM_MAX - 1) < $item_num) {
   $now_finish_num = $item_num;
 }
 
-$items = get_open_limit_items($db, $start_array_num, INDEX_NUM_MAX);
+$sorts = get_sorts_names($db);
+
+$sort_key = get_get('sort_key');
+if ($sort_key === ''){
+  // プルダウン未選択なら、新着順
+  $sort_key = 'new';
+}
+
+$sort_sql = get_sort_sql($db, $sort_key);
+
+$items = get_open_limit_items($db, $sort_sql, $start_array_num, INDEX_NUM_MAX);
 
 include_once VIEW_PATH . 'index_view.php';

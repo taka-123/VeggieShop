@@ -9,11 +9,23 @@
 </head>
 <body>
   <?php include VIEW_PATH . 'templates/header_logined.php'; ?>
-  
 
   <div class="container">
     <h1>商品一覧</h1>
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
+
+    <div class="text-right">
+      <form method="get" action="./index.php">
+        <select name="sort_key">
+        <?php foreach($sorts as $sort){ ?>
+        <option value=<?php print(h($sort['sort_key'])); ?>>
+          <?php print(h($sort['sort_name'])); ?>
+        </option>
+        <?php } ?>
+        </select>
+        <input type="submit" value="並び替え" class="btn btn-primary">
+      </form>
+    </div> 
 
     <?php print_page_link($now_page, $max_page); ?>
 
