@@ -69,7 +69,7 @@
 
     <div class="card-deck">
       <div class="row">
-      <?php foreach($popular_item_3 as $popular_item){ ?>
+      <?php foreach($popular_items as $popular_item){ ?>
         <div class="col-4 item">
           <div class="card h-100 text-center">
             <div class="font-weight-bold text-center lead">  
