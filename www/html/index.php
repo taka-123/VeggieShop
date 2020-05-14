@@ -45,4 +45,7 @@ $sort_sql = get_sort_sql($db, $sort_key);
 
 $items = get_open_limit_items($db, $sort_sql, $start_array_num, INDEX_NUM_MAX);
 
+$popular_items = get_popular_items($db, RANK_DISPLAY_NUM);
+$rank = 1;
+
 include_once VIEW_PATH . 'index_view.php';

@@ -69,6 +69,35 @@ function get_limit_items($db, $is_open = false, $sort_sql, $start_array_num, $ne
   return fetch_all_query($db, $sql, $params);
 }
 
+function get_popular_items($db, $int) {
+  $sql = '
+    SELECT
+      order_details.item_id,
+      sum(order_details.quantity),
+      items.name,
+      items.stock,
+      items.price,
+      items.image,
+      items.status   
+    FROM
+      order_details
+    JOIN
+      items
+    ON
+      order_details.item_id = items.item_id
+    WHERE
+      items.status = 1
+    GROUP BY
+      order_details.item_id
+    ORDER BY
+      `sum(order_details.quantity)`  DESC
+    LIMIT ?
+  ';
+  $params = array($int);
+
+  return fetch_all_query($db, $sql, $params);
+}
+
 function get_open_items_num($db) {
   $sql = '
   SELECT COUNT(*)
