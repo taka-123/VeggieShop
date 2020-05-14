@@ -166,13 +166,13 @@ function get_now_page(){
   }
 }
 
-function print_page_link($now_page, $max_page) {
+function print_page_link($now_page, $sort_key, $max_page) {
   // ページネーション
   print('<nav aria-label="Page navigation">
   <ul class="pagination justify-content-center">');
   // 「前へ」ボタン
   if($now_page > 1){
-    print('<li class="page-item"><a class="page-link" href="/index.php?page_id='.($now_page - 1).'">前へ</a></li>');
+    print('<li class="page-item"><a class="page-link" href="/index.php?page_id='.($now_page - 1).'&sort_key='.$sort_key.'">前へ</a></li>');
   } else {
     // 現在のページが1ページ目ならリンクを貼らない
     print('<li class="page-item disabled"><a class="page-link">前へ</a></li>');
@@ -183,12 +183,12 @@ function print_page_link($now_page, $max_page) {
       // 現在表示中のページ番号にはリンクを貼らない
       print('<li class="page-item active"><span class="page-link">'.$i.'<span class="sr-only">(current)</span></span></li>');
     } else {
-      print('<li class="page-item"><a class="page-link" href="/index.php?page_id='.$i.'">'.$i.'</a></li>');
+      print('<li class="page-item"><a class="page-link" href="/index.php?page_id='.$i.'&sort_key='.$sort_key.'">'.$i.'</a></li>');
     }
   }
   // 「次へ」ボタン
   if($now_page < $max_page){
-    print('<li class="page-item"><a class="page-link" href="/index.php?page_id='.($now_page + 1).'">次へ</a></li>');
+    print('<li class="page-item"><a class="page-link" href="/index.php?page_id='.($now_page + 1).'&sort_key='.$sort_key.'">次へ</a></li>');
   } else {
     // 現在のページが最終ページ目ならリンクを貼らない
     print('<li class="page-item disabled"><a class="page-link">次へ</a></li>');

@@ -18,16 +18,22 @@
       <form method="get" action="./index.php">
         <select name="sort_key">
         <?php foreach($sorts as $sort){ ?>
-        <option value=<?php print(h($sort['sort_key'])); ?>>
-          <?php print(h($sort['sort_name'])); ?>
-        </option>
+          <?php if($sort_key === $sort['sort_key']) { ?>
+            <option selected value=<?php print(h($sort['sort_key'])); ?>>
+              <?php print(h($sort['sort_name'])); ?>
+            </option>
+          <?php } else { ?>
+            <option value=<?php print(h($sort['sort_key'])); ?>>
+              <?php print(h($sort['sort_name'])); ?>
+            </option>
+          <?php } ?>
         <?php } ?>
         </select>
         <input type="submit" value="並び替え" class="btn btn-primary">
       </form>
     </div> 
 
-    <?php print_page_link($now_page, $max_page); ?>
+    <?php print_page_link($now_page, $sort_key, $max_page); ?>
 
     <?php print_list_num($item_num, $now_start_num, $now_finish_num); ?>
 
@@ -62,7 +68,7 @@
 
     <?php print_list_num($item_num, $now_start_num, $now_finish_num); ?>
 
-    <?php print_page_link($now_page, $max_page); ?>
+    <?php print_page_link($now_page, $sort_key, $max_page); ?>
 
 
     <h2 class="text-center mt-5">人気ランキング</h2>
