@@ -16,6 +16,16 @@ $user = get_login_user($db);
 
 $token = get_csrf_token();
 
+$sorts = get_sorts_names($db);
+
+$sort_key = get_get('sort_key');
+if ($sort_key === ''){
+  // プルダウン未選択なら、新着順
+  $sort_key = 'new';
+}
+
+$sort_sql = get_sort_sql($db, $sort_key);
+
 // 公開商品全件数
 $item_num = get_open_items_num($db);
 // トータルページ数
@@ -32,16 +42,6 @@ if (($now_start_num + INDEX_NUM_MAX - 1) < $item_num) {
 } else {
   $now_finish_num = $item_num;
 }
-
-$sorts = get_sorts_names($db);
-
-$sort_key = get_get('sort_key');
-if ($sort_key === ''){
-  // プルダウン未選択なら、新着順
-  $sort_key = 'new';
-}
-
-$sort_sql = get_sort_sql($db, $sort_key);
 
 $items = get_open_limit_items($db, $sort_sql, $start_array_num, INDEX_NUM_MAX);
 
