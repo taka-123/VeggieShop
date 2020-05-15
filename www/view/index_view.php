@@ -18,15 +18,9 @@
       <form method="get" action="./index.php">
         <select name="sort_key">
         <?php foreach($sorts as $sort){ ?>
-          <?php if($sort_key === $sort['sort_key']) { ?>
-            <option selected value=<?php print(h($sort['sort_key'])); ?>>
-              <?php print(h($sort['sort_name'])); ?>
-            </option>
-          <?php } else { ?>
-            <option value=<?php print(h($sort['sort_key'])); ?>>
-              <?php print(h($sort['sort_name'])); ?>
-            </option>
-          <?php } ?>
+          <option <?php if ($sort_key === $sort['sort_key']){ print 'selected'; }?> value=<?php print(h($sort['sort_key'])); ?>>
+            <?php print(h($sort['sort_name'])); ?>
+          </option>
         <?php } ?>
         </select>
         <input type="submit" value="並び替え" class="btn btn-primary">
