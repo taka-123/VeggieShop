@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'index.css'); ?>">
 </head>
 <body>
+  <script>
+    $(function(){
+      $("#sort_select").change(function(){
+        $("#sort_form").submit();
+      });
+    });
+  </script>
   <?php include VIEW_PATH . 'templates/header_logined.php'; ?>
 
   <div class="container">
@@ -15,15 +22,14 @@
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
 
     <div class="text-right">
-      <form method="get" action="./index.php">
-        <select name="sort_key">
+      <form method="get" action="./index.php" id="sort_form">
+        <select name="sort_key" id="sort_select">
         <?php foreach($sorts as $sort){ ?>
           <option <?php if ($sort_key === $sort['sort_key']){ print 'selected'; }?> value=<?php print(h($sort['sort_key'])); ?>>
             <?php print(h($sort['sort_name'])); ?>
           </option>
         <?php } ?>
         </select>
-        <input type="submit" value="並び替え" class="btn btn-primary">
       </form>
     </div> 
 
