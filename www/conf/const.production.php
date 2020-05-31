@@ -29,6 +29,9 @@ define('REGEXP_POSITIVE_INTEGER', '/\A([1-9][0-9]*|0)\z/');
 // 商品一覧1ページの最大表示件数
 define('INDEX_NUM_MAX', 8);
 
+// 人気ランキングの表示件数
+define('RANK_DISPLAY_NUM', 3);
+
 define('USER_NAME_LENGTH_MIN', 6);
 define('USER_NAME_LENGTH_MAX', 100);
 define('USER_PASSWORD_LENGTH_MIN', 6);
