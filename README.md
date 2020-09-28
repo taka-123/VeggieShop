@@ -1,3 +1,9 @@
+## VeggieShopへ
+
+http://118.27.17.227/veggieshop/index.php
+
+
+
 ## 確認
 
 * ドキュメントルート: http://localhost:8080
