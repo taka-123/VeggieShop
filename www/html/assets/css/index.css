@@ -1,3 +1,13 @@
 .item {
   margin-top: 10px;
 }
+
+@media screen and (max-width: 480px) {
+  .row {
+    display: block;
+  }
+  .item {
+    max-width: 80%;
+    margin: 10px auto;
+  }
+}
