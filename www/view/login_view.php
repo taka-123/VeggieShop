@@ -25,6 +25,12 @@
       <input type="hidden" name="token" value=<?php print $token ?>>
       <input type="submit" value="ログイン" class="btn btn-primary">
     </form>
+
+    <p class="text-danger text-center mt-5">
+      ※admin / admin（管理者用）か sampleuser / password（一般用）
+      <br>
+      でログインできます。サインアップもできます。
+    </p>
   </div>
 </body>
 </html>
